@@ -15,11 +15,12 @@ import socket
 import sys
 
 BBOX = []
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('localhost', 3000)
-sock.connect(server_address)
+
 
 def getAnswer():
+  sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  server_address = ('localhost', 3000)
+  sock.connect(server_address)  
   y1 = BBOX.pop()
   x1 = BBOX.pop()
   y0 = BBOX.pop()
@@ -45,7 +46,7 @@ def getAnswer():
   #     if(key == text.lstrip().rstrip()):
   #       print(f'A: {data[key]}')
   #       os.system("echo %s | clip" % data[key])
-
+  sock.close()
 def mousePosition():
   x, y = pyautogui.position()
   BBOX.append(x)
