@@ -27,9 +27,12 @@ def getAnswer():
   # print(x0, y0, x1 ,y1)xxq
   screen = np.array(ImageGrab.grab(bbox = (x0, y0, x1, y1)))
   print(screen)
-  scr = json.dumps(screen.tolist(),separators=(',', ':'), sort_keys=True, indent=4)
-  msg = [1,2,3]
-  sock.send(scr.encode())
+  # scr = json.dumps(screen.tolist(),separators=(',', ':'), sort_keys=True, indent=4)
+  scr = json.dumps(screen.tolist())
+  scr_bytes = scr.encode('utf-8')
+  size = size_of_screen(scr_bytes)
+  sock.send(data_size_str(size))
+  sock.send(scr_bytes)
   # screen_gray = cv2.cvtColor(screen, cv2.COLOR_RGB2GRAY)
   # t = pytesseract.image_to_string(screen_gray, lang='rus')
   # t = t.lstrip()
@@ -59,7 +62,18 @@ def mousePosition():
 # pytesseract.pytesseract.tesseract_cmd = pathTessetact
 # f = codecs.open(pathDataset, "r", "utf-8")
 # dataset = json.loads(f.read())
+
+
 print('Started...')
+
+def size_of_screen(bytes):
+  return len(bytes)
+
+
+def data_size_str(size):
+  return ('size:' + str(size) + ':').encode('utf-8')
+
+
 keyboard.add_hotkey('X', mousePosition)
 keyboard.add_hotkey('Q', getAnswer)
 keyboard.wait('Ctrl + Q')
