@@ -1,4 +1,5 @@
 # -*- codecs: utf-8 -*-
+from __future__ import unicode_literals
 import sys
 import codecs
 import json
@@ -6,7 +7,8 @@ import numpy as np
 import cv2 
 import pytesseract
 
-pathTessetact = 'A:\\Python\\tesseractOCR\\tesseract.exe'
+# pathTessetact = 'A:\\Python\\tesseractOCR\\tesseract.exe'
+pathTessetact = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 pathDataset = 'result.txt'
 
 f = codecs.open('data.json', "r", "utf-8")
@@ -21,8 +23,10 @@ t = t.lstrip()
 t = t.rstrip()
 t = t.splitlines()
 text = ' '.join(t)
-print(f'Q: {text}')
-sys.stdout.write(text) #Тестовая запись, что нашло на фото, выдает ?????
+
+# sys.stdout.write(json.dumps(f'Q: {text}')) 
+sys.stdout.write(json.dumps(text)) #Тестовая запись, что нашло на фото, выдает ?????
+sys.stdout.write('\n')
 #----Цикл для поиска в датасете, оставлю его в git (result.txt)---#
 # for data in dataset:  
 #   for key in data:
