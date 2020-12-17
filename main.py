@@ -15,11 +15,12 @@ import socket
 import sys
 
 BBOX = []
-
+HOST = input('HOST: ')
+PORT = input('PORT: ')
 
 def getAnswer():
   sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  server_address = ('localhost', 3000)
+  server_address = (HOST, int(PORT))
   sock.connect(server_address)  
   y1 = BBOX.pop()
   x1 = BBOX.pop()
@@ -36,7 +37,6 @@ def getAnswer():
 
   data = sock.recv(1024).decode('utf-8')
   d =  json.loads(data)
-  print(d)
   # screen_gray = cv2.cvtColor(screen, cv2.COLOR_RGB2GRAY)
   # t = pytesseract.image_to_string(screen_gray, lang='rus')
   # t = t.lstrip()

@@ -7,14 +7,16 @@ import numpy as np
 import cv2 
 import pytesseract
 
-# pathTessetact = 'A:\\Python\\tesseractOCR\\tesseract.exe'
-pathTessetact = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pathTessetact = 'A:\\Python\\tesseractOCR\\tesseract.exe'
+# pathTessetact = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 pathDataset = 'result.txt'
 
 f = codecs.open('data.json', "r", "utf-8")
 dataset = json.loads(f.read())
 img = np.array(dataset, dtype='uint8')
 img_gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+cv2.imshow('f', img_gray)
+cv2.waitKey(0)
 pytesseract.pytesseract.tesseract_cmd = pathTessetact
 f = codecs.open(pathDataset, "r", "utf-8")
 dataset = json.loads(f.read())
