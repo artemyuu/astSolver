@@ -28,10 +28,21 @@ text = ' '.join(t)
 
 # sys.stdout.write(json.dumps(f'Q: {text}')) 
 sys.stdout.write(json.dumps(text)) #Тестовая запись, что нашло на фото, выдает ?????
-sys.stdout.write('\n')
 #----Цикл для поиска в датасете, оставлю его в git (result.txt)---#
 # for data in dataset:  
 #   for key in data:
 #     if(key == text.lstrip().rstrip()):
 #       print(data[key])
         # sys.stdout.write(data[key]) 
+
+# config = codecs.open('config.txt', 'r', 'utf-8')
+# pathTessetact = ''
+# pathDataset = ''
+# try:
+#   pathTessetact, pathDataset  = config.read().splitlines()
+# except:
+#   pathTessetact = input('Path to tesseract.exe: ')
+#   pathDataset = input('Path to dataset: ')
+# pytesseract.pytesseract.tesseract_cmd = pathTessetact
+# f = codecs.open(pathDataset, "r", "utf-8")
+# dataset = json.loads(f.read())
