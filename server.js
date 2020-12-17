@@ -38,7 +38,7 @@ server.on("error", () => {
   console.log("Error on server");
 });
 
-server.listen(3000, "localhost", () => {
+server.listen(33333, () => {
   console.log("Server is running");
 });
 
@@ -106,6 +106,7 @@ const produce = (socket_obj, bytes) => {
     pyProcess.stdout.on("data", (bytes_from) => {
       data.RESULT = bytes_from;
       socket.write(bytes_from);
+      console.clear();
     });
   });
 };
